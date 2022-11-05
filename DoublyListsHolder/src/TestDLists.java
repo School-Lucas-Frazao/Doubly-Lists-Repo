@@ -29,6 +29,7 @@ public class TestDLists
     	one.enqueue(2);
     	one.enqueue(3);
     	one.enqueue(4);
+    	one.enqueue(5);
     	System.out.println(one);
     	
     	
