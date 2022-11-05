@@ -32,13 +32,14 @@ public class Queue <T>
 			
 			while( temp.next != null)
 			{
+				
 				temp = temp.next;
 			}
 			
 			temp.next = New;
-			temp.prev = temp;
+			temp.next.prev = temp;
 			tail = temp.next;
-			//temp.next.next = temp;
+			temp.next.next = head;
 		}
 	}
 	
