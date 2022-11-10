@@ -1,10 +1,10 @@
-
+//Lucas Frazao, Period 7, Queue file, Meant to manipulate doubly list nodes
 public class Queue <T>
 {
-	dNode<T> head = new dNode<T>();
+	dNode<T> head = new dNode<T>();//creates the two reference nodes
 	dNode<T> tail = new dNode<T>();
 	
-	public Queue()
+	public Queue()//consructors
 	{
 		head = null;
 		tail = null;
@@ -15,49 +15,113 @@ public class Queue <T>
 		head = new dNode<T>(t);
 		tail = head;
 	}
+		
 	
 	public void enqueue(T value)
 	{
-		dNode<T> New = new dNode<T>();//makes the listnode nw
-		dNode<T> temp = new dNode<T>();//sets temp to listnode new
-		New.data = value;//sets the data in new equal to the parameter
-		temp = head;//sets temp equal to front
-		if( head == null)//if list is empty
+		dNode<T> Value = new dNode<T>();
+		dNode<T> temp = new dNode<T>();
+		temp = head;
+		Value.data = value;
+		
+		if(head == null)
 		{
-			head = New;
-			tail = New;
+			head = Value;
+			tail = Value;
 		}
-		else//if list is not empty
+		else
 		{
-			
-			while( temp.next != null)
+		
+			while(temp != tail )
 			{
-				
 				temp = temp.next;
 			}
 			
-			temp.next = New;
-			temp.next.prev = temp;
-			tail = temp.next;
-			temp.next.next = head;
+			temp.next = Value;
+			tail = Value;
+		}
+		
+	}
+	
+	public T dequeue()//method to remove first node
+	{
+		
+		T t = null;//any info var
+	
+		
+		if (head == null)//what happens when head is null
+		{
+			return null;
+		}
+		else
+		{
+			t = head.data;
+			head = head.next;
+			tail.next = head;
+			head.prev = head;
+		}
+		return t;
+	}
+	
+	public boolean isEmpty()//simple code to check if code empty
+	{
+		if(head == null)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 	
+	public void sendToBack()
+	{
+		dNode<T> temp = new dNode<T>();
+		temp = head;//sets temp to head
+		head = head.next;//sets head to skip one node
+		head.prev = head; //sets head to skip one node when going backwards
+		temp.next = null;
+		temp.prev = null;
+		tail.next = temp;
+		temp.next = head;
+		 
+	}
 	
+	public int size()
+	{
+		int count = 0;//counts the size
+		dNode<T> temp = new dNode<T>();
+		temp = head;
+		while(temp != tail)
+		{
+			count ++;
+			temp = temp.next;
+		}
+		
+		return count+1;//compensates for code not reaching tail
+	}
 	
 	public String toString()
 	{
-		String x = "";//will be what is returned
+		String x = "";//var that will be returned
 		dNode<T> temp = new dNode<T>();
 		temp = head;
+		
 		while(temp != tail)
 		{
 			x = x + temp.data + ",";
 			temp = temp.next;
 		}
-		return x;
+		if (temp == tail && temp != null)
+		{
+			x = x + temp.data;
+		}
 		
+		return x;
 	}
+	
+
 	
 	
 }
