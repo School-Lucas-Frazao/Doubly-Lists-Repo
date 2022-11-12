@@ -55,6 +55,7 @@ public class TestDLists
     	System.out.println("size is " + one.size());
     	System.out.println("one is: " + one);
     	one.sendToBack();
+    	one.sendToBack();
     	System.out.println("one is: " + one);
     }
     

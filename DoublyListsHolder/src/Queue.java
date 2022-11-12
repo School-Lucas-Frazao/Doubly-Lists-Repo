@@ -91,8 +91,11 @@ public class Queue <T>
 			temp = temp.next;
 		}
 		
-		temp.next.prev = tail;
+		tail.next = head;
+		head.prev = tail;
+		tail = head;
 		head = head.next;
+		
 		
 		 
 	}
