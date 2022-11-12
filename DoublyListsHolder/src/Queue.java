@@ -53,6 +53,12 @@ public class Queue <T>
 		{
 			return null;
 		}
+		if(head == tail)
+		{
+			t = head.data;
+			head = null;
+			tail = head;
+		}
 		else
 		{
 			t = head.data;
@@ -77,14 +83,17 @@ public class Queue <T>
 	
 	public void sendToBack()
 	{
+		
 		dNode<T> temp = new dNode<T>();
-		temp = head;//sets temp to head
-		head = head.next;//sets head to skip one node
-		head.prev = head; //sets head to skip one node when going backwards
-		temp.next = null;
-		temp.prev = null;
-		tail.next = temp;
-		temp.next = head;
+		temp = head;
+		while(temp != tail)
+		{
+			temp = temp.next;
+		}
+		
+		temp.next.prev = tail;
+		head = head.next;
+		
 		 
 	}
 	
@@ -93,10 +102,18 @@ public class Queue <T>
 		int count = 0;//counts the size
 		dNode<T> temp = new dNode<T>();
 		temp = head;
-		while(temp != tail)
+		
+		if(head == null)
 		{
-			count ++;
-			temp = temp.next;
+			count = -1;
+		}
+		else
+		{
+			while(temp != tail)
+			{
+				count ++;
+				temp = temp.next;
+			}
 		}
 		
 		return count+1;//compensates for code not reaching tail
@@ -110,7 +127,7 @@ public class Queue <T>
 		
 		while(temp != tail)
 		{
-			x = x + temp.data + ",";
+			x = x + temp.data + "|";
 			temp = temp.next;
 		}
 		if (temp == tail && temp != null)
