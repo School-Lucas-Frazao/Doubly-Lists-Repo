@@ -1,4 +1,4 @@
-//Lucas Frazao, Period 7, Queue file, Meant to manipulate doubly list nodes
+//Lucas Frazao, Period 7, Queue file, Meant to manipulate doubly list nodes based on what is called in TestDLists
 public class Queue <T>
 {
 	dNode<T> head = new dNode<T>();//creates the two reference nodes
