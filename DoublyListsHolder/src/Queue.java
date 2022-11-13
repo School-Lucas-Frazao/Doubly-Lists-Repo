@@ -5,7 +5,7 @@ public class Queue <T>
 	dNode<T> tail = new dNode<T>();
 	private int capacity = Integer.MAX_VALUE;
 	
-	public Queue()//consructors
+	public Queue()//constructors
 	{
 		head = null;
 		tail = null;
