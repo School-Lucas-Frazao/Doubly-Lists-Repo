@@ -3,7 +3,7 @@ public class Queue <T>
 {
 	dNode<T> head = new dNode<T>();//creates the two reference nodes
 	dNode<T> tail = new dNode<T>();
-	private int capacity = 0;
+	private int capacity = Integer.MAX_VALUE;
 	
 	public Queue()//consructors
 	{
@@ -17,6 +17,7 @@ public class Queue <T>
 		tail = head;
 	}
 	
+	
 	public Queue(T t, int cap)
 	{
 		head = new dNode<T>(t);
@@ -24,27 +25,8 @@ public class Queue <T>
 		capacity = cap;
 	}
 	
-	public int size()
-	{
-		int count = 0;//counts the size
-		dNode<T> temp = new dNode<T>();
-		temp = head;
-		
-		if(head == null)
-		{
-			count = -1;
-		}
-		else
-		{
-			while(temp != tail)
-			{
-				count ++;
-				temp = temp.next;
-			}
-		}
-		
-		return count+1;//compensates for code not reaching tail
-	}
+	
+	
 		
 	
 	public void enqueue(T value)
@@ -54,10 +36,16 @@ public class Queue <T>
 		temp = head;
 		Value.data = value;
 		
+		
 		if( capacity == size())
 		{
 			throw new IllegalStateException();
 		}
+		
+		else
+		{
+		
+		
 		
 	
 			if(head == null)
@@ -77,8 +65,10 @@ public class Queue <T>
 				tail = Value;
 			}
 		
+		}
 		
 	}
+	
 	
 	public int Capacity()
 	{
@@ -89,6 +79,7 @@ public class Queue <T>
 	{
 		capacity = value;
 	}
+	
 	
 	public T dequeue()//method to remove first node
 	{
@@ -133,18 +124,45 @@ public class Queue <T>
 		
 		dNode<T> temp = new dNode<T>();
 		temp = head;
-		while(temp != tail)
+		if(temp == null)
 		{
-			temp = temp.next;
+			System.out.println("List is null, nothing to send back");
+		}
+		else
+		{
+			while(temp != tail)
+			{
+				temp = temp.next;
+			}
+			
+			tail.next = head;
+			head.prev = tail;
+			tail = head;
+			head = head.next;
+		}
+		 
+	}
+	
+	public int size()
+	{
+		int count = 0;//counts the size
+		dNode<T> temp = new dNode<T>();
+		temp = head;
+		
+		if(head == null)
+		{
+			count = -1;
+		}
+		else
+		{
+			while(temp != tail)
+			{
+				count ++;
+				temp = temp.next;
+			}
 		}
 		
-		tail.next = head;
-		head.prev = tail;
-		tail = head;
-		head = head.next;
-		
-		
-		 
+		return count+1;//compensates for code not reaching tail
 	}
 	
 
@@ -155,16 +173,25 @@ public class Queue <T>
 		dNode<T> temp = new dNode<T>();
 		temp = head;
 		
-		while(temp != tail)
+		if(temp == null)
 		{
-			x = x + temp.data + "|";
-			temp = temp.next;
+			x = " There is nothing in the list ";
 		}
-		if (temp == tail && temp != null)
+		else
 		{
-			x = x + temp.data;
-		}
 		
+			while(temp != tail)
+			{
+				x = x + temp.data + "|";
+				temp = temp.next;
+			}
+			if (temp == tail && temp != null)
+			{
+				x = x + temp.data;
+			}
+			
+		
+		}
 		return x;
 	}
 	
