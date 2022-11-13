@@ -17,43 +17,33 @@ public class Queue <T>
 		tail = head;
 	}
 	
-	
-	public Queue(T t, int cap)
+	public Queue(T t, int cap)//constructor with capacity
 	{
 		head = new dNode<T>(t);
 		tail = head;
 		capacity = cap;
 	}
 	
-	
-	
-		
-	
 	public void enqueue(T value)
 	{
-		dNode<T> Value = new dNode<T>();
+		dNode<T> Value = new dNode<T>();//dnode with parameter
 		dNode<T> temp = new dNode<T>();
-		temp = head;
+		temp = head;//sets temp to head
 		Value.data = value;
 		
-		
-		if( capacity == size())
+		if( capacity == size())//evaluates the capacity
 		{
 			throw new IllegalStateException();
 		}
 		
 		else
 		{
-		
-		
-		
-	
 			if(head == null)
 			{
 				head = Value;
 				tail = Value;
 			}
-			else
+			else//adds value if list is not null
 			{
 			
 				while(temp != tail )
@@ -64,22 +54,19 @@ public class Queue <T>
 				temp.next = Value;
 				tail = Value;
 			}
-		
 		}
-		
 	}
 	
 	
-	public int Capacity()
+	public int Capacity()//returns capacity
 	{
 		return capacity;
 	}
 	
-	public void changeCapacity(int value)
+	public void changeCapacity(int value)//changes the capacity value
 	{
 		capacity = value;
 	}
-	
 	
 	public T dequeue()//method to remove first node
 	{
@@ -189,13 +176,7 @@ public class Queue <T>
 			{
 				x = x + temp.data;
 			}
-			
-		
 		}
 		return x;
 	}
-	
-
-	
-	
 }
