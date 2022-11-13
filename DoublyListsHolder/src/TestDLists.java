@@ -16,7 +16,7 @@ public class TestDLists
     	
 		//Students create 2 LinkedIntList objects.
     	
-    	Queue<Integer> one = new Queue<Integer>();
+    	Queue<Integer> one = new Queue<Integer>(null, 3);
     	
     	
 
@@ -57,6 +57,9 @@ public class TestDLists
     	one.sendToBack();
     	one.sendToBack();
     	System.out.println("one is: " + one);
+    	System.out.println(one.size());
+    	System.out.println(one);
+    	
     }
     
 	//Create your LinkedIntList class in another file called "LinkedIntList"

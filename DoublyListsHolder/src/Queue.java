@@ -3,6 +3,7 @@ public class Queue <T>
 {
 	dNode<T> head = new dNode<T>();//creates the two reference nodes
 	dNode<T> tail = new dNode<T>();
+	private int capacity = 0;
 	
 	public Queue()//consructors
 	{
@@ -15,6 +16,35 @@ public class Queue <T>
 		head = new dNode<T>(t);
 		tail = head;
 	}
+	
+	public Queue(T t, int cap)
+	{
+		head = new dNode<T>(t);
+		tail = head;
+		capacity = cap;
+	}
+	
+	public int size()
+	{
+		int count = 0;//counts the size
+		dNode<T> temp = new dNode<T>();
+		temp = head;
+		
+		if(head == null)
+		{
+			count = -1;
+		}
+		else
+		{
+			while(temp != tail)
+			{
+				count ++;
+				temp = temp.next;
+			}
+		}
+		
+		return count+1;//compensates for code not reaching tail
+	}
 		
 	
 	public void enqueue(T value)
@@ -24,23 +54,40 @@ public class Queue <T>
 		temp = head;
 		Value.data = value;
 		
-		if(head == null)
+		if( capacity == size())
 		{
-			head = Value;
-			tail = Value;
+			throw new IllegalStateException();
 		}
-		else
-		{
 		
-			while(temp != tail )
+	
+			if(head == null)
 			{
-				temp = temp.next;
+				head = Value;
+				tail = Value;
 			}
+			else
+			{
 			
-			temp.next = Value;
-			tail = Value;
-		}
+				while(temp != tail )
+				{
+					temp = temp.next;
+				}
+				
+				temp.next = Value;
+				tail = Value;
+			}
 		
+		
+	}
+	
+	public int Capacity()
+	{
+		return capacity;
+	}
+	
+	public void changeCapacity(int value)
+	{
+		capacity = value;
 	}
 	
 	public T dequeue()//method to remove first node
@@ -100,27 +147,7 @@ public class Queue <T>
 		 
 	}
 	
-	public int size()
-	{
-		int count = 0;//counts the size
-		dNode<T> temp = new dNode<T>();
-		temp = head;
-		
-		if(head == null)
-		{
-			count = -1;
-		}
-		else
-		{
-			while(temp != tail)
-			{
-				count ++;
-				temp = temp.next;
-			}
-		}
-		
-		return count+1;//compensates for code not reaching tail
-	}
+
 	
 	public String toString()
 	{
